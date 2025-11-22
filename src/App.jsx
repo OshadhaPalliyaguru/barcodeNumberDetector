@@ -11,8 +11,12 @@ function App() {
   const handleScan = (decodedText) => {
     // Filter to keep only numbers
     const numbersOnly = decodedText.replace(/[^0-9]/g, '')
-    setScannedNumber(numbersOnly)
-    setIsScanning(false) // Scanner clears itself, but we track state to show "Scan Again" button
+
+    // Validate length (standard barcodes are usually 8, 12, 13, or 14 digits)
+    if (numbersOnly.length >= 8 && numbersOnly.length <= 14) {
+      setScannedNumber(numbersOnly)
+      setIsScanning(false)
+    }
   }
 
   const handleRestart = () => {
