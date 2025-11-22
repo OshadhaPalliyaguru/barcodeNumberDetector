@@ -1,0 +1,6 @@
+function NavBar() {
+    return (
+      <>
+      </>
+    );
+}
