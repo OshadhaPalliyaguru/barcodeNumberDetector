@@ -7,6 +7,7 @@ import BarcodeScanner from './components/Scanner'
 function App() {
   const [scannedNumber, setScannedNumber] = useState('')
   const [isScanning, setIsScanning] = useState(true)
+  const [scanError, setScanError] = useState('')
 
   const handleScan = (decodedText) => {
     // Filter to keep only numbers
@@ -15,12 +16,16 @@ function App() {
     // Validate length (standard barcodes are usually 8, 12, 13, or 14 digits)
     if (numbersOnly.length >= 8 && numbersOnly.length <= 14) {
       setScannedNumber(numbersOnly)
+      setScanError('')
       setIsScanning(false)
+    } else {
+      setScanError(`Invalid Barcode Length: ${numbersOnly.length} digits (${numbersOnly})`)
     }
   }
 
   const handleRestart = () => {
     setScannedNumber('')
+    setScanError('')
     setIsScanning(true)
   }
 
@@ -37,6 +42,7 @@ function App() {
           placeholder="Waiting for scan..."
           className="result-input"
         />
+        {scanError && <p style={{ color: 'red', fontSize: '0.9em' }}>{scanError}</p>}
       </div>
 
       <div className="scanner-wrapper">

@@ -6,9 +6,8 @@ const BarcodeScanner = ({ onScanSuccess, onScanFailure }) => {
   useEffect(() => {
 
     const config = {
-      fps: 10,
-      qrbox: { width: 250, height: 150 },
-      aspectRatio: 1.0,
+      fps: 15,
+      qrbox: { width: 300, height: 150 },
       formatsToSupport: [
         Html5QrcodeSupportedFormats.EAN_13,
         Html5QrcodeSupportedFormats.EAN_8,
