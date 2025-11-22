@@ -8,24 +8,27 @@ function App() {
   const [scannedNumber, setScannedNumber] = useState('')
   const [isScanning, setIsScanning] = useState(true)
   const [scanError, setScanError] = useState('')
+  const [rawValue, setRawValue] = useState('')
 
   const handleScan = (decodedText) => {
+    setRawValue(decodedText)
     // Filter to keep only numbers
     const numbersOnly = decodedText.replace(/[^0-9]/g, '')
 
-    // Validate length (standard barcodes are usually 8, 12, 13, or 14 digits)
-    if (numbersOnly.length >= 8 && numbersOnly.length <= 14) {
+    // RELAXED VALIDATION FOR DEBUGGING: Accept any number
+    if (numbersOnly.length > 0) {
       setScannedNumber(numbersOnly)
       setScanError('')
       setIsScanning(false)
     } else {
-      setScanError(`Invalid Barcode Length: ${numbersOnly.length} digits (${numbersOnly})`)
+      setScanError(`No numbers found in scan: "${decodedText}"`)
     }
   }
 
   const handleRestart = () => {
     setScannedNumber('')
     setScanError('')
+    setRawValue('')
     setIsScanning(true)
   }
 
@@ -43,6 +46,7 @@ function App() {
           className="result-input"
         />
         {scanError && <p style={{ color: 'red', fontSize: '0.9em' }}>{scanError}</p>}
+        {rawValue && <p style={{ color: 'gray', fontSize: '0.8em' }}>Raw Scan: {rawValue}</p>}
       </div>
 
       <div className="scanner-wrapper">

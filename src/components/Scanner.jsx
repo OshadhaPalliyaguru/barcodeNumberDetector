@@ -8,13 +8,13 @@ const BarcodeScanner = ({ onScanSuccess, onScanFailure }) => {
     const config = {
       fps: 15,
       qrbox: { width: 300, height: 150 },
-      formatsToSupport: [
-        Html5QrcodeSupportedFormats.EAN_13,
-        Html5QrcodeSupportedFormats.EAN_8,
-        Html5QrcodeSupportedFormats.UPC_A,
-        Html5QrcodeSupportedFormats.UPC_E,
-        Html5QrcodeSupportedFormats.CODE_128
-      ]
+      // formatsToSupport: [
+      //   Html5QrcodeSupportedFormats.EAN_13,
+      //   Html5QrcodeSupportedFormats.EAN_8,
+      //   Html5QrcodeSupportedFormats.UPC_A,
+      //   Html5QrcodeSupportedFormats.UPC_E,
+      //   Html5QrcodeSupportedFormats.CODE_128
+      // ]
     };
 
     const scanner = new Html5QrcodeScanner("reader", config, false);
